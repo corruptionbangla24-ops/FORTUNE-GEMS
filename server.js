@@ -23,7 +23,7 @@ app.use((req, res, next) => {
 });
 
 // 🎰 [উইনগো কালার ট্রেড ওরিজিনাল ডোমেইন সিঙ্ক ভাই ভাই]
-const MAIN_SITE_URL = "https://onrender.com"; 
+const MAIN_SITE_URL = "https://betlover247.onrender.com"; 
 
 // 💎 ওরিজিনাল ফরচুন জেমস ৪টি প্রিমিয়াম ক্যাসিনো সিম্বল ম্যাপ
 const fortuneGemsPool = ["GOLD_STRIKE", "BLUE_GEM", "GREEN_GEM", "RED_GEM"];
@@ -187,5 +187,5 @@ app.get('/', (req, res) => { res.sendFile(path.resolve(__dirname, 'index.html'))
 io.on('connection', (socket) => {});
 
 // ⚡ কাস্টম নোড সার্ভার পোর্ট গেটওয়ে লাইভ অন ফায়ার (৪০০০০ পোর্টে ডেডিকেটেড সিঙ্ক লক!)
-const PORT = process.env.PORT || 40000; 
+const PORT = process.env.PORT || 6400; 
 server.listen(PORT, () => { console.log(`💎 Fortune Gems 3+1 Reel Booster Engine Running on port ${PORT}`); });
