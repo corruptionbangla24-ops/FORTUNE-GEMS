@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>FORTUNE GEMS - ROYAL 3+1 REEL BOOSTER</title>
+    <style>
+        /* 🎨 ক্যাসিনো ৩+১ রিল ফরচুন জেমস গোল্ডেন নিওন সিএসএস ফ্রেম ইনজেকশন ভাই ভাই */
+        html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: #05070c; font-family: 'Segoe UI', Roboto, sans-serif; color: #fff; -webkit-tap-highlight-color: transparent; user-select: none; }
+        .header { display: none !important; } 
+        
+        body { 
+            background: radial-gradient(circle at center, #111b2d 0%, #030509 100%); 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            height: 100vh; 
+        }
+
+        /* 🏟️ ওরিজিনাল ৩+১ রিল স্লট মেশিন এরিনা ক্যানভাস Wrapper */
+        .slot-machine-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            height: 315px;
+            margin: 15px auto 0 auto;
+            background: linear-gradient(180deg, #0d1424 0%, #05080f 100%);
+            border: 4px solid #00d2ff;
+            border-radius: 24px;
+            box-shadow: 0 0 30px rgba(0,210,255,0.25), inset 0 0 25px rgba(0,0,0,0.9);
+            padding: 15px 12px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1;
+        }
+
+        /* 🎰 ৩টি মেইন রিল কলাম গ্রিড লেআউট চ্যাম */
+        .main-reels-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            width: 72%;
+            height: 100%;
+            position: relative;
+        }
+
+        /* ⚡ ডানদিকের স্পেশাল ৪র্থ মাল্টিপ্লায়ার বুস্টার রিল কন্টেইনার নব */
+        .booster-multiplier-reel {
+            width: 24%;
+            height: 100%;
+            background: linear-gradient(180deg, #2a1b00 0%, #150d00 100%);
+            border: 3px solid #ffaa00;
+            border-radius: 14px;
+            box-shadow: 0 0 15px rgba(255,170,0,0.3), inset 0 0 15px rgba(0,0,0,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reel-column-node {
+            background: #060912;
+            border: 2px solid #141c2e;
+            border-radius: 12px;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.9);
+        }
+
+        /* 💎 রিলসের ভেতরের ওরিজিনাল নিওন জেমস সিম্বল ইমেজ নোড */
+        .symbol-img-frame {
+            width: 85%;
+            height: 85%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.1s ease-out;
+        }
+        .symbol-img-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.85));
+        }
+
+        /* 🎯 বুস্টার রিল ওরিজিনাল ওッズ টেক্সট ডিজাইন */
+        .multiplier-odds-box {
+            font-size: 32px;
+            font-weight: 900;
+            color: #ffaa00;
+            text-shadow: 0 0 10px #ffaa00, 0 0 20px #ffaa00;
+            transition: transform 0.1s ease;
+        }
+
+        /* 🟡 মাঝখানের ওরিজিনাল গোল্ডেন পে-লাইন লেজার বর্ম */
+        .payline-center-laser-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #ffcc00;
+            box-shadow: 0 0 12px #ffcc00, 0 0 24px #ffcc00;
+            z-index: 10;
+            pointer-events: none;
+            opacity: 0.75;
+        }
+
+        /* 🌀 স্পিনিং ব্লার অ্যানিমেশন ইফেক্ট */
+        .reel-spinning-blur {
+            animation: reelSpinBlurAnim 0.11s linear infinite;
+        }
+        @keyframes reelSpinBlurAnim {
+            0% { transform: translateY(-35px) scaleY(1.2); filter: blur(3px); }
+            100% { transform: translateY(35px) scaleY(1.2); filter: blur(3px); }
+        }
+
+        /* 📢 লাইভ মেসেজ প্যানেল বার */
+        .win-status-container { position: relative; z-index: 10; text-align: center; padding: 10px; margin: 4px 12px; background: rgba(9, 12, 18, 0.6); border-radius: 10px; border: 1px solid rgba(255,255,255,0.02); }
+        #win-text-msg { font-size: 12px; font-weight: 700; color: #38bdf8; letter-spacing: 0.3px; }
+
+        /* 🎛️ নিচের মেইন গেম কন্ট্রোল প্যানেল ফুটার (১৫ পিক্সেল ওপরে লিফটিং সুপ্রিম লক) */
+        .footer-controls { position: relative; z-index: 50; background: #07090e; border-top: 1px solid #161b29; padding: 20px 15px 50px 15px; box-shadow: 0 -8px 25px rgba(0,0,0,0.7); }
+        .play-section { display: flex; justify-content: space-between; align-items: center; gap: 10px; max-width: 450px; margin: 0 auto; margin-bottom: 25px; }
+        .bet-btn-nav { background: #111522; border: 1px solid #20293d; color: #ffaa00; font-size: 18px; font-weight: 800; width: 40px; height: 40px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .play-btn { flex: 1; background: linear-gradient(180deg, #ffbb00 0%, #d48800 100%); color: #000; font-size: 16px; font-weight: 900; border: none; padding: 12px 0; border-radius: 10px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 10px rgba(212,136,0,0.3); }
+        .play-btn:disabled { background: #141721 !important; border-color: #1f2536 !important; color: #4b5563 !important; box-shadow: none !important; cursor: not-allowed; }
+        .icon-btn { background: #111522; border: 1px solid #20293d; width: 40px; height: 40px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #ffaa00; font-weight: bold; }
+        .icon-btn.active { background: #ffaa00; color: #000; box-shadow: 0 0 10px rgba(255,170,0,0.4); }
+
+        .win-glow-bar { border-color: rgba(0, 255, 136, 0.4) !important; background: rgba(0, 255, 136, 0.05) !important; }
+        .win-glow-bar #win-text-msg { color: #00ff88 !important; }
+        .lose-glow-bar { border-color: rgba(255, 51, 102, 0.4) !important; background: rgba(255, 51, 102, 0.05) !important; }
+        .lose-glow-bar #win-text-msg { color: #ff3366 !important; }
+    </style>
+</head>
+<body>
+
+    <div class="header" style="display:none !important;">
+        <div class="balance-box">৳ <span id="user-balance">0.00</span></div>
+    </div>
+
+    <!-- 🏟️ ওরিজিনাল ৩+১ রিল স্লট মেশিন ক্যানভাস Wrapper -->
+    <div class="slot-machine-wrapper">
+        <div class="main-reels-grid">
+            <div class="payline-center-laser-line"></div>
+            <div class="reel-column-node" id="reel-0"><div class="symbol-img-frame" id="sym-frame-0"><img src="GOLD_STRIKE.png" alt="Gems"></div></div>
+            <div class="reel-column-node" id="reel-1"><div class="symbol-img-frame" id="sym-frame-1"><img src="GOLD_STRIKE.png" alt="Gems"></div></div>
+            <div class="reel-column-node" id="reel-2"><div class="symbol-img-frame" id="sym-frame-2"><img src="GOLD_STRIKE.png" alt="Gems"></div></div>
+        </div>
+        
+        <!-- ⚡ ডানদিকের স্পেশাল ৪র্থ মাল্টিপ্লায়ার বুস্টার রিল নোড -->
+        <div class="booster-multiplier-reel" id="booster-reel-node">
+            <div class="multiplier-odds-box" id="multiplier-display-box">x1</div>
+        </div>
+    </div>
+
+    <!-- 📢 উইন-লস লাইভ ক্যাসিনো মেসেজ বার -->
+    <div class="win-status-container" id="win-status-box">
+        <span id="win-text-msg">বেট সিলেক্ট করে SPIN বোতাম চাপুন ভাই, ফরচুন জেমস বুস্টার অন ফায়ার!</span>
+    </div>
+
+    <!-- 🎛️ অ্যাকশন কন্ট্রোল প্যানেল ফুটার বার -->
+    <div class="footer-controls">
+        <div class="play-section">
+            <button class="bet-btn-nav" onclick="adjustBet('minus')">-</button>
+            <div style="text-align: center; width: 65px;">
+                <div style="font-size: 9px; color: #aaa; font-weight: bold;">BET</div>
+                <div style="font-size: 15px; font-weight: 900; color: #fff;" id="bet-display">৳৫০</div>
+            </div>
+            <button class="bet-btn-nav" onclick="adjustBet('plus')">+</button>
+
+            <button class="play-btn" id="spin-btn" onclick="handleFortuneGemsSpinRoll()">SPIN</button>
+            
+            <div class="icon-group">
+                <button class="icon-btn" id="auto-btn" onclick="toggleAuto()">🔄</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlUserId = urlParams.get('userId') || urlParams.get('id') || urlParams.get('username') || "guest_user";
+        const urlWallet = urlParams.get('wallet') || "main";
+        const SERVER_URL = window.location.origin;
+
+        let balance = 0.00;
+        let currentBet = 50;
+        let isSpinning = false;
+        let isAuto = false;
+        let autoInterval = null;
+
+        // 🔒 [কিংস কারেকশন ট্রিক]: আপনার স্ক্রিনশটের ৪টি প্রিমিয়াম জেমস আইটেম কোড লিক ব্লকার ম্যাপ ভাই ভাই!
+        const symbolImagesMap = {
+            "GOLD_STRIKE": "GOLD_STRIKE.png",
+            "BLUE_GEM": "BLUE_GEM.png",
+            "GREEN_GEM": "GREEN_GEM.png",
+            "RED_GEM": "RED_GEM.png"
+        };
+
+                function adjustBet(action) {
+            if (isSpinning) return;
+            if (action === 'minus' && currentBet > 50) currentBet -= 50;
+            if (action === 'plus' && currentBet < 20000) currentBet += 50;
+            document.getElementById("bet-display").innerText = `৳${currentBet}`;
+            playAudio('click');
+        }
+
+        // 🎰 [🎰 ৩+১ রিল বুস্টার শাফলিং ও স্পিনিং অ্যানিমেশন ইঞ্জিন]
+        function animateFortuneGemsSpinning(serverGameData) {
+            playAudio('spin');
+            
+            // ডাটা বাস্কেট ক্লিয়ারেন্স প্রোটেকশন বর্ম
+            let matrixResult = serverGameData.finalReelsResultMatrix || (serverGameData.gameData ? serverGameData.gameData.finalReelsResultMatrix : null);
+            let multiplierOdds = serverGameData.winMultiplier || (serverGameData.gameData ? serverGameData.gameData.winMultiplier : 1);
+            
+            if (!matrixResult || !Array.isArray(matrixResult)) {
+                matrixResult = ["GOLD_STRIKE", "GOLD_STRIKE", "GOLD_STRIKE"];
+            }
+
+            // ৩টি মেইন রিল এবং ৪র্থ বুস্টার রিল একসাথে হাই-স্পিড স্পিন ব্লার মোড একটিভেট
+            for (let i = 0; i < 3; i++) {
+                const frame = document.getElementById(`sym-frame-${i}`);
+                if (frame) frame.className = "symbol-img-frame reel-spinning-blur";
+            }
+            const boosterBox = document.getElementById("multiplier-display-box");
+            if (boosterBox) boosterBox.className = "multiplier-odds-box reel-spinning-blur";
+
+            // বাম থেকে ডানে ক্রমান্বয়ে ৩টি রিল থামার লাক্সারি মেমোরি টাইমিং
+            let reelIndex = 0;
+            let stopInterval = setInterval(() => {
+                if (reelIndex < 3) {
+                    const frame = document.getElementById(`sym-frame-${reelIndex}`);
+                    if (frame) {
+                        frame.className = "symbol-img-frame";
+                        let targetSymbolName = matrixResult[reelIndex];
+                        let imageFileName = symbolImagesMap[targetSymbolName] || "GOLD_STRIKE.png";
+                        frame.innerHTML = `<img src="${imageFileName}" alt="${targetSymbolName}">`;
+                    }
+                    playAudio('click');
+                    reelIndex++;
+                } else {
+                    clearInterval(stopInterval);
+                    
+                    // ৪র্থ রিলের স্পেশাল মাল্টিপ্লায়ার ওッズ ফ্লাশ নোড
+                    setTimeout(() => {
+                        if (boosterBox) {
+                            boosterBox.className = "multiplier-odds-box";
+                            boosterBox.innerText = `x${multiplierOdds > 0 ? multiplierOdds : 1}`;
+                            boosterBox.style.transform = "scale(1.3)";
+                            setTimeout(() => { boosterBox.style.transform = "scale(1)"; }, 120);
+                        }
+                        playAudio('click');
+                        
+                        if (serverGameData.balance !== undefined) balance = parseFloat(serverGameData.balance);
+                        showFinalFortuneGemsReward(serverGameData.status, multiplierOdds, serverGameData.winAmount);
+                    }, 300);
+                }
+            }, 350);
+        }
+
+        async function handleFortuneGemsSpinRoll() {
+            // 🔒 [🔒 ডাবল-ক্লিক ব্লকার ও পিૂર ব্যালেন্স কাটার বর্ম]: বাজি ধরার সাথে সাথেই বোতাম ডিজেবল!
+            if (isSpinning || isSpinning === true) return; 
+            isSpinning = true;
+            
+            const spinBtn = document.getElementById("spin-btn");
+            if (spinBtn) spinBtn.disabled = true; 
+
+            document.getElementById("win-status-box").className = "win-status-container";
+            document.getElementById("win-text-msg").innerText = "🎰 ৩+১ রিল বুস্টার ফরচুন জেমস শাফলিং করা হচ্ছে... লাইভ সিঙ্কের অপেক্ষা ওস্তাদ...";
+            playAudio('click');
+
+            try {
+                const response = await fetch(`${SERVER_URL}/api/fortunegems-spin`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ userId: urlUserId, amount: parseFloat(currentBet), wallet: urlWallet })
+                });
+
+                const serverRes = await response.json();
+                
+                if (serverRes.success || serverRes.success === true) {
+                    let targetGamePayload = serverRes.gameData || serverRes;
+                    animateFortuneGemsSpinning(targetGamePayload);
+                } else {
+                    alert(serverRes.message || "❌ আপনার অ্যাকাউন্ট ব্যালেন্স জিরো বা অপ্রতুল! দয়া করে রিচার্জ করুন ওস্তাদ।");
+                    stopFortuneGemsState();
+                }
+            } catch (err) {
+                stopFortuneGemsState();
+            }
+        }
+
+        function showFinalFortuneGemsReward(status, multiplier, winAmount) {
+            const msgBox = document.getElementById("win-status-box");
+            const textMsg = document.getElementById("win-text-msg");
+            
+            if (status === "win" && winAmount > 0) {
+                playAudio('win');
+                if (msgBox) msgBox.className = "win-status-container win-glow-bar";
+                textMsg.innerHTML = `🎉 <b>বিগ উইন ওস্তাদ!</b> ৩-জেমস কম্বো মিলে <b>${multiplier}X</b> বুস্টার ওッズ সহ ৳${winAmount} ওয়ালেটে ক্রেডিট লক ভাই ভাই!`;
+            } else {
+                playAudio('wheel');
+                if (msgBox) msgBox.className = "win-status-container lose-glow-bar";
+                textMsg.innerHTML = `💥 ওহ হো লস ওস্তাদ! জেমস ম্যাচ লাইন মেলেনি। আবার অন ফায়ার বুস্টার স্পিন মারুন ভাই ভাই!`;
+            }
+
+            if (window.parent) window.parent.postMessage({ action: "refresh_wallet" }, "*");
+            stopFortuneGemsState();
+
+            if (isAuto) {
+                autoInterval = setTimeout(() => {
+                    if (isAuto) handleFortuneGemsSpinRoll();
+                }, 3800);
+            }
+        }
+
+        if (typeof io !== 'undefined') {
+            const socket = io();
+            socket.on("balanceUpdate", (data) => {
+                if (data && data.username === urlUserId) {
+                    if (window.parent) window.parent.postMessage({ action: "refresh_wallet" }, "*");
+                }
+            });
+        }
+
+        function toggleAuto() {
+            isAuto = !isAuto;
+            const autoEl = document.getElementById("auto-btn");
+            if (autoEl) autoEl.classList.toggle('active', isAuto);
+            if (isAuto && !isSpinning) handleFortuneGemsSpinRoll();
+            playAudio('click');
+        }
+
+        function stopFortuneGemsState() {
+            isSpinning = false;
+            const spinBtn = document.getElementById("spin-btn");
+            if (spinBtn) spinBtn.disabled = false; 
+            if (!isAuto && autoInterval) clearTimeout(autoInterval);
+        }
+
+        const slotSounds = {
+            click: new Audio('spin2.mp3'),
+            spin: new Audio('spin2.mp3'),
+            win: new Audio('win2.mp3'),
+            wheel: new Audio('spin2.mp3')
+        };
+        Object.values(slotSounds).forEach(s => s.load());
+
+        function playAudio(type) {
+            try { if(slotSounds[type]) { slotSounds[type].currentTime = 0; slotSounds[type].play().catch(e => {}); } } catch(e) {}
+        }
+    </script>
+</body>
+</html>
+
+
